@@ -7,7 +7,7 @@ import numpy.testing as npt
 import os
 import unittest
 
-import galaxy_diver.data_management.tex_interface as tex_interface
+import py2tex
 
 ########################################################################
 
@@ -20,7 +20,7 @@ class TestReadTeXVariableFile( unittest.TestCase ):
 
     def setUp( self ):
 
-        self.tex_vfile = tex_interface.TeXVariableFile( filename )
+        self.tex_vfile = py2tex.TeXVariableFile( filename )
 
     ########################################################################
     
@@ -43,7 +43,7 @@ class TestTeXVariableFileReset( unittest.TestCase ):
 
     def setUp( self ):
 
-        self.tex_vfile = tex_interface.TeXVariableFile( filename )
+        self.tex_vfile = py2tex.TeXVariableFile( filename )
 
     def tearDown( self ):
 
