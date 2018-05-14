@@ -14,7 +14,8 @@ import inspect
 
 def store_parameters( constructor ):
     '''Decorator for automatically storing arguments passed to a constructor.
-    I.e. any args passed to constructor via test_object = TestObject( *args, **kwargs )
+    I.e. any args passed to constructor via
+    test_object = TestObject( *args, **kwargs )
     will be stored in test_object, e.g. test_object.args
 
     Args:

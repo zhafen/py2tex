@@ -80,7 +80,21 @@ class TeXVariableFile( object ):
     ########################################################################
 
     def save_variable( self, key, item ):
-        '''Save a variable to the TeX file.'''
+        '''Save a variable to the TeX file.
+
+        Args:
+            key (str) :
+                Name to store the variable as. Do not use numbers in the name!
+                LaTeX does not work well with numbers in command names.
+
+            item (str) :
+                What the value to store to the variable, pre-formatted as a
+                string.
+
+        Modifies:
+            self.data_dict :
+                Stores the variable in this dictionary, and writes to the file.
+        '''
 
         print( "Saving {} as {}".format( item, key ) )
 
@@ -99,6 +113,17 @@ class TeXVariableFile( object ):
     ########################################################################
 
     def delete_variable( self, key ):
+        '''Delete a variable in the tex file.
+
+        Args:
+            key (str) :
+                Delete the variable with this name from the tex file.
+
+        Modifies:
+            self.data_dict :
+                Removes the variable from this dictionary, and writes to the
+                file.
+        '''
 
         print( "Deleting {}".format( key ) )
 
