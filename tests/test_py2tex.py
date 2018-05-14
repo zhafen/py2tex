@@ -1,9 +1,6 @@
 '''Testing for data_management.py
 '''
 
-from mock import patch
-import numpy as np
-import numpy.testing as npt
 import os
 import unittest
 
@@ -80,9 +77,13 @@ class TestTeXVariableFileReset( unittest.TestCase ):
         with open( filename, 'r' ) as f:
             actual = f.read()
 
-        expected  = '\\newcommand{\\a}{3}\n\\newcommand{\\c}{1}\n\\newcommand{\\b}{2}\n'
-
-        self.assertEqual( expected, actual )
+        # Try two different orderings for the file (depends on python version)
+        try:
+            expected  = '\\newcommand{\\a}{3}\n\\newcommand{\\c}{1}\n\\newcommand{\\b}{2}\n'
+            self.assertEqual( expected, actual )
+        except:
+            expected  = '\\newcommand{\\a}{3}\n\\newcommand{\\b}{2}\n\\newcommand{\\c}{1}\n'
+            self.assertEqual( expected, actual )
 
     ########################################################################
 
@@ -93,8 +94,11 @@ class TestTeXVariableFileReset( unittest.TestCase ):
         with open( filename, 'r' ) as f:
             actual = f.read()
 
-        expected  = '\\newcommand{\\a}{1}\n\\newcommand{\\c}{9000}\n\\newcommand{\\b}{-100}\n'
-
-        self.assertEqual( expected, actual )
+        try:
+            expected  = '\\newcommand{\\a}{1}\n\\newcommand{\\c}{9000}\n\\newcommand{\\b}{-100}\n'
+            self.assertEqual( expected, actual )
+        except:
+            expected  = '\\newcommand{\\a}{1}\n\\newcommand{\\b}{-100}\n\\newcommand{\\c}{9000}\n'
+            self.assertEqual( expected, actual )
 
         
