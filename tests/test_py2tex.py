@@ -11,7 +11,7 @@ import galaxy_diver.data_management.tex_interface as tex_interface
 
 ########################################################################
 
-filename = './tests/data/tex_test_dir/analysis_output.tex'
+filename = './tests/data/analysis_output.tex'
 
 ########################################################################
 ########################################################################
