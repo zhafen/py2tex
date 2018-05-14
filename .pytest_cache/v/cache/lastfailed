@@ -1,3 +1,4 @@
 {
-  "tests/test_py2tex.py": true
+  "tests/test_py2tex.py::TestReadTeXVariableFile": true, 
+  "tests/test_py2tex.py::TestTeXVariableFileReset": true
 }
