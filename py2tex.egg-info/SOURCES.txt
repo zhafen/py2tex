@@ -1,5 +1,0 @@
-setup.py
-py2tex.egg-info/PKG-INFO
-py2tex.egg-info/SOURCES.txt
-py2tex.egg-info/dependency_links.txt
-py2tex.egg-info/top_level.txt
