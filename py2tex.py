@@ -98,13 +98,16 @@ class TeXVariableFile( object ):
 
         print( "Saving {} as {}".format( item, key ) )
 
+        # Warn when overwriting.
         if key in self.data_dict.keys():
-            warnings.warn(
-                "Overwriting variable {}. Previous value {}".format(
-                    key,
-                    self.data_dict[key],
+            if self.data_dict[key] != item:
+                warnings.warn(
+                    "Overwriting variable {}. New value {}, previous value {}".format(
+                        key,
+                        item,
+                        self.data_dict[key],
+                    )
                 )
-            )
 
         self.data_dict[key] = item
 
