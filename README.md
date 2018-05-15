@@ -1,10 +1,10 @@
 # py2tex
+[![Build Status](https://travis-ci.com/zhafen/py2tex.svg?branch=master)](https://travis-ci.com/zhafen/py2tex)
 Interface for easily saving python variables in a tex file.
 
 # Installation
 
-Install using pip:
-`pip install py2tex`
+To install, clone and then add to your python path.
 
 # Usage
 
@@ -31,5 +31,3 @@ Example usage in LaTex:
 Our analysis uses random values.
 Our randomly chosen seed is \seedvalue.
 ```
-
-[![Build Status](https://travis-ci.com/zhafen/py2tex.svg?branch=master)](https://travis-ci.com/zhafen/py2tex)
