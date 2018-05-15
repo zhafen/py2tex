@@ -8,7 +8,7 @@ To install, clone and then add to your python path.
 
 # Usage
 
-Example usage in Python
+Example usage in Python:
 ```python
 import numpy as np
 import py2tex
@@ -24,7 +24,7 @@ tex_file.save_variable(
 Note that the variable should be saved as the string you want displayed in latex.
 This means formatting float variables accordingly, for example `'{:.02f}'.format( 0.12356 )` will save as `'.12'`.
 
-Example usage in LaTex:
+Example usage in LaTeX:
 ```
 \include{variables}
 
