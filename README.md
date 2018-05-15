@@ -1,14 +1,14 @@
+[![Build Status](https://travis-ci.com/zhafen/py2tex.svg?branch=master)](https://travis-ci.com/zhafen/py2tex)
 # py2tex
 Interface for easily saving python variables in a tex file.
 
 # Installation
 
-Install using pip:
-`pip install py2tex`
+To install, clone and then add to your python path.
 
 # Usage
 
-Example usage in Python
+Example usage in Python:
 ```python
 import numpy as np
 import py2tex
@@ -24,12 +24,10 @@ tex_file.save_variable(
 Note that the variable should be saved as the string you want displayed in latex.
 This means formatting float variables accordingly, for example `'{:.02f}'.format( 0.12356 )` will save as `'.12'`.
 
-Example usage in LaTex:
+Example usage in LaTeX:
 ```
 \include{variables}
 
 Our analysis uses random values.
 Our randomly chosen seed is \seedvalue.
 ```
-
-[![Build Status](https://travis-ci.com/zhafen/py2tex.svg?branch=master)](https://travis-ci.com/zhafen/py2tex)
