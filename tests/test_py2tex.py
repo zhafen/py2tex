@@ -4,7 +4,7 @@
 import os
 import unittest
 
-import py2tex.py2tex as py2tex
+import py2tex
 
 ########################################################################
 
@@ -126,9 +126,6 @@ class TestHelperFunctions( unittest.TestCase ):
         value = 12.3456e7
 
         expected = r'10^{8}'
-
-        #DEBUG
-        import pdb; pdb.set_trace()
 
         actual = py2tex.to_tex_scientific_notation( value, 1 )
 
