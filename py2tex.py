@@ -157,8 +157,12 @@ def to_tex_scientific_notation( value, sig_figs=2 ):
             The specified value in scientific notation.
 
     Examples:
-        >>> to_tex_scientific_notation( 12.345e6, 2 )
+        >>> to_tex_scientific_notation( 1.2345e7, 2 )
         '1.2x10^{7}'
+        >>> to_tex_scientific_notation( 321.5, 1 )
+        '3x10^{2}'
+        >>> to_tex_scientific_notation( 1.2345e7, 1 )
+        '10^{7}'
     '''
 
     exponent, digits = str( np.log10( value ) ).split( '.' )
@@ -169,4 +173,11 @@ def to_tex_scientific_notation( value, sig_figs=2 ):
     format_string = '{:.0' + str( sig_figs - 1 ) + 'f}'
     formatted_digits = format_string.format( digits_value )
 
-    return '{}x10^{}'.format( formatted_digits, formatted_exponent )
+    formatted_value = '{}x10^{}'.format( formatted_digits, formatted_exponent )
+
+    # Check for a special case
+    if formatted_value[:2] == '1x':
+        return formatted_value[2:]
+
+    return formatted_value
+
