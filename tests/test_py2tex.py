@@ -4,7 +4,7 @@
 import os
 import unittest
 
-import py2tex
+import py2tex.py2tex as py2tex
 
 ########################################################################
 
@@ -102,3 +102,20 @@ class TestTeXVariableFileReset( unittest.TestCase ):
             self.assertEqual( expected, actual )
 
         
+########################################################################
+########################################################################
+
+class TestHelperFunctions( unittest.TestCase ):
+
+    def test_to_tex_scientific_notation( self ):
+
+        value = 12.3456e7
+
+        expected = r'1.2x10^{8}'
+
+        #DEBUG
+        import pdb; pdb.set_trace()
+
+        actual = py2tex.to_tex_scientific_notation( value, 2 )
+
+        self.assertEqual( expected, actual )

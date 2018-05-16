@@ -6,6 +6,7 @@
 @status: Development
 '''
 
+import numpy as np
 import os
 import warnings
 
@@ -134,3 +135,38 @@ class TeXVariableFile( object ):
 
         self.write()
 
+
+########################################################################
+########################################################################
+
+def to_tex_scientific_notation( value, sig_figs=2 ):
+    '''Convert a float value to scientific notation, as would be displayed
+    in TeX.
+
+    Args:
+        value (float) :
+            Value to convert.
+
+        sig_figs (int) :
+            Number of significant figures to use.
+            An astrophysicist wrote this code, so the default number of sig
+            figs is 2 :) (1 would also be a good option...)
+
+    Returns:
+        formatted_value (str) :
+            The specified value in scientific notation.
+
+    Examples:
+        >>> to_tex_scientific_notation( 12.345e6, 2 )
+        '1.2x10^{7}'
+    '''
+
+    exponent, digits = str( np.log10( value ) ).split( '.' )
+
+    formatted_exponent = '{' + exponent + '}'
+
+    digits_value = 10.**float( '.{}'.format( digits ) )
+    format_string = '{:.0' + str( sig_figs - 1 ) + 'f}'
+    formatted_digits = format_string.format( digits_value )
+
+    return '{}x10^{}'.format( formatted_digits, formatted_exponent )
