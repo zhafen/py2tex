@@ -173,11 +173,11 @@ def to_tex_scientific_notation( value, sig_figs=2 ):
     format_string = '{:.0' + str( sig_figs - 1 ) + 'f}'
     formatted_digits = format_string.format( digits_value )
 
-    formatted_value = '{}x10^{}'.format( formatted_digits, formatted_exponent )
+    formatted_value = '{}\\times10^{}'.format( formatted_digits, formatted_exponent )
 
     # Check for a special case
-    if formatted_value[:2] == '1x':
-        return formatted_value[2:]
+    if formatted_value[:7] == '1\\times':
+        return formatted_value[7:]
 
     return formatted_value
 

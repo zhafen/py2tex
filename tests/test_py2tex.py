@@ -111,7 +111,7 @@ class TestHelperFunctions( unittest.TestCase ):
 
         value = 12.3456e7
 
-        expected = r'1.2x10^{8}'
+        expected = r'1.2\times10^{8}'
 
         actual = py2tex.to_tex_scientific_notation( value, 2 )
 
@@ -120,7 +120,8 @@ class TestHelperFunctions( unittest.TestCase ):
     ########################################################################
 
     def test_to_tex_scientific_notation_special_case( self ):
-        '''When we would produce '1x10^{X}', instead return just '10^{X}'
+        '''When we would produce '1\\times10^{X}',
+        instead return just '10^{X}'
         '''
 
         value = 12.3456e7
