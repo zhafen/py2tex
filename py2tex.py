@@ -138,7 +138,7 @@ class TeXVariableFile( object ):
 ########################################################################
 ########################################################################
 
-def to_tex_scientific_notation( value, sig_figs=2 ):
+def to_tex_scientific_notation( value, sig_figs=1 ):
     '''Convert a float value to scientific notation, as would be displayed
     in TeX.
 
@@ -149,7 +149,8 @@ def to_tex_scientific_notation( value, sig_figs=2 ):
         sig_figs (int) :
             Number of significant figures to use.
             An astrophysicist wrote this code, so the default number of sig
-            figs is 2 :) (1 would also be a good option...)
+            figs is 1 :)
+            A value of 0 will return just the powers of 10.
 
     Returns:
         formatted_value (str) :
@@ -162,21 +163,32 @@ def to_tex_scientific_notation( value, sig_figs=2 ):
         '3x10^{2}'
         >>> to_tex_scientific_notation( 1.2345e7, 1 )
         '10^{7}'
+        >>> to_tex_scientific_notation( 5.5e30, 0 )
+        '10^{31}'
     '''
 
-    exponent, digits = str( np.log10( value ) ).split( '.' )
+    if sig_figs == 0:
 
-    formatted_exponent = '{' + exponent + '}'
+        exponent = np.log10( value )
 
-    digits_value = 10.**float( '.{}'.format( digits ) )
-    format_string = '{:.0' + str( sig_figs - 1 ) + 'f}'
-    formatted_digits = format_string.format( digits_value )
+        formatted_exponent = str( int( round( exponent ) ) )
 
-    formatted_value = '{}\\times10^{}'.format( formatted_digits, formatted_exponent )
+        return '10^{' + formatted_exponent + '}'
 
-    # Check for a special case
-    if formatted_value[:7] == '1\\times':
-        return formatted_value[7:]
+    else:
+        exponent, digits = str( np.log10( value ) ).split( '.' )
 
-    return formatted_value
+        formatted_exponent = '{' + exponent + '}'
+
+        digits_value = 10.**float( '.{}'.format( digits ) )
+        format_string = '{:.0' + str( sig_figs - 1 ) + 'f}'
+        formatted_digits = format_string.format( digits_value )
+
+        formatted_value = '{}\\times10^{}'.format( formatted_digits, formatted_exponent )
+
+        # Check for a special case
+        if formatted_value[:7] == '1\\times':
+            return formatted_value[7:]
+
+        return formatted_value
 

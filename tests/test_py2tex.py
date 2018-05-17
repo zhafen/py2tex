@@ -145,3 +145,18 @@ class TestHelperFunctions( unittest.TestCase ):
         actual = py2tex.to_tex_scientific_notation( value, 1 )
 
         self.assertEqual( expected, actual )
+
+    ########################################################################
+
+    def test_to_tex_scientific_notation_no_digits( self ):
+        '''When we would produce '9\\times10^{X}',
+        instead return just '10^{X+1}', when sig_figs==0
+        '''
+
+        value = 5.5e70
+
+        expected = r'10^{71}'
+
+        actual = py2tex.to_tex_scientific_notation( value, 0 )
+
+        self.assertEqual( expected, actual )
