@@ -45,12 +45,11 @@ class TeXVariableFile( object ):
                 # Read the file
                 with open( self.filename, 'r' ) as f:
                     lines = f.readlines()
-
                 # Parse
                 self._data_dict = {}
                 for line in lines:
                     name = line.split( '{' )[1].split( '\\' )[-1][:-1]
-                    value = line.split( '{' )[-1].split( '}' )[0]
+                    value = line[15+len(name):-2]
 
                     self._data_dict[name] = value
 

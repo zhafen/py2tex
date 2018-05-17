@@ -15,20 +15,34 @@ filename = './tests/data/analysis_output.tex'
 
 class TestReadTeXVariableFile( unittest.TestCase ):
 
-    def setUp( self ):
-
-        self.tex_vfile = py2tex.TeXVariableFile( filename )
-
-    ########################################################################
-    
     def test_data_dict( self ):
+
+        tex_vfile = py2tex.TeXVariableFile( filename )
 
         expected = {
             'a' : '1',
             'b' : '-100',
         }
 
-        actual = self.tex_vfile.data_dict
+        actual = tex_vfile.data_dict
+
+        self.assertEqual( expected, actual )
+
+    ########################################################################
+
+    def test_file_contains_scientific_notation( self ):
+
+        tex_vfile = py2tex.TeXVariableFile(
+            './tests/data/analysis_output2.tex'
+        )
+
+        expected = {
+            'a' : '1',
+            'b' : '-100',
+            'c' : r'5.23\times10^{10}',
+        }
+
+        actual = tex_vfile.data_dict
 
         self.assertEqual( expected, actual )
 
