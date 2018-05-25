@@ -205,3 +205,30 @@ class TestHelperFunctions( unittest.TestCase ):
         actual = py2tex.to_tex_scientific_notation( value, 0 )
 
         self.assertEqual( expected, actual )
+
+########################################################################
+
+class TestToTeXPercentage( unittest.TestCase ):
+
+    def test_to_tex_precentage( self ):
+
+        value = 0.573
+
+        expected = r'60\%'
+
+        actual = py2tex.to_tex_percentage( value, 0 )
+
+        self.assertEqual( expected, actual )
+    
+    ########################################################################
+
+    def test_to_tex_precentage( self ):
+
+        value = 0.573
+
+        expected = r'57\%'
+
+        actual = py2tex.to_tex_percentage( value, 1 )
+
+        self.assertEqual( expected, actual )
+    

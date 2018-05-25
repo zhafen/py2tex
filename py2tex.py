@@ -194,3 +194,32 @@ def to_tex_scientific_notation( value, sig_figs=1 ):
 
         return formatted_value
 
+########################################################################
+
+def to_tex_percentage( value, precision=1 ):
+    '''Format a value as a percentage.
+
+    Args:
+        value (float) : Number to format.
+
+        precision (int) : Number of digits to include.
+
+    Returns:
+        tex_percentage (str) : Formatted number.
+    '''
+
+    # Python handles formatting percent a little weird, so this is a
+    # kind of hacky workaround
+    if precision == 0:
+        format_string = '{:.' + str(precision) + 'g}'
+        rounded_value = float( format_string.format( value ) )
+
+        percent_format_str = '{:.' + str(precision) + '%}'
+        percent_str = percent_format_str.format( rounded_value )
+    else:
+        percent_format_str = '{:.' + str(precision - 1) + '%}'
+        percent_str = percent_format_str.format( value )
+        
+    tex_percent = '{}\\%'.format( percent_str[:-1] )
+
+    return tex_percent
