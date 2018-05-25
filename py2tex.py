@@ -176,11 +176,11 @@ def to_tex_scientific_notation( value, sig_figs=1 ):
         return '10^{' + formatted_exponent + '}'
 
     else:
-        exponent, digits = str( np.log10( value ) ).split( '.' )
+        digits, exponent = ( '{:e}'.format( value ) ).split( 'e' )
 
-        formatted_exponent = '{' + exponent + '}'
+        formatted_exponent = '{' + str(int(exponent)) + '}'
 
-        digits_value = 10.**float( '.{}'.format( digits ) )
+        digits_value = float( digits )
         format_string = '{:.0' + str( sig_figs - 1 ) + 'f}'
         formatted_digits = format_string.format( digits_value )
 

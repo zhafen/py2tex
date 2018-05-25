@@ -4,7 +4,7 @@
 import os
 import unittest
 
-import py2tex
+import py2tex.py2tex as py2tex
 
 ########################################################################
 
@@ -141,6 +141,36 @@ class TestHelperFunctions( unittest.TestCase ):
         value = 12.3456e7
 
         expected = r'10^{8}'
+
+        actual = py2tex.to_tex_scientific_notation( value, 1 )
+
+        self.assertEqual( expected, actual )
+
+    ########################################################################
+
+    def test_to_tex_scientific_notation_neg_one_to_zero( self ):
+        '''Test that when we provide a value between 0.1 and 1 things work
+        still
+        '''
+
+        value = 0.12
+
+        expected = r'1.2\times10^{-1}'
+
+        actual = py2tex.to_tex_scientific_notation( value, 2 )
+
+        self.assertEqual( expected, actual )
+
+    ########################################################################
+
+    def test_to_tex_scientific_notation_small_fraction( self ):
+        '''Test that when we provide a value between 0.1 and 1 things work
+        still
+        '''
+
+        value = 0.0067
+
+        expected = r'7\times10^{-3}'
 
         actual = py2tex.to_tex_scientific_notation( value, 1 )
 
