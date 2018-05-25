@@ -148,6 +148,21 @@ class TestHelperFunctions( unittest.TestCase ):
 
     ########################################################################
 
+    def test_to_tex_scientific_notation_special_case_two( self ):
+        '''When we would produce 'X\\times10^{0]'
+        instead return just X
+        '''
+
+        value = 3.45
+
+        expected = r'3'
+
+        actual = py2tex.to_tex_scientific_notation( value, 1 )
+
+        self.assertEqual( expected, actual )
+
+    ########################################################################
+
     def test_to_tex_scientific_notation_neg_one_to_zero( self ):
         '''Test that when we provide a value between 0.1 and 1 things work
         still

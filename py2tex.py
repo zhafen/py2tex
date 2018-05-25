@@ -186,9 +186,11 @@ def to_tex_scientific_notation( value, sig_figs=1 ):
 
         formatted_value = '{}\\times10^{}'.format( formatted_digits, formatted_exponent )
 
-        # Check for a special case
+        # Check for special cases
         if formatted_value[:7] == '1\\times':
             return formatted_value[7:]
+        if formatted_value[-12:] == r'\times10^{0}':
+            return formatted_value[:-12]
 
         return formatted_value
 
