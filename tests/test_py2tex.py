@@ -4,7 +4,7 @@
 import os
 import unittest
 
-import py2tex.py2tex as py2tex
+import py2tex
 
 ########################################################################
 
