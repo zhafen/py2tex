@@ -196,13 +196,15 @@ def to_tex_scientific_notation( value, sig_figs=1 ):
 
 ########################################################################
 
-def to_tex_percentage( value, precision=1 ):
+def to_tex_percentage( value, precision=1, include_percent=True ):
     '''Format a value as a percentage.
 
     Args:
         value (float) : Number to format.
 
         precision (int) : Number of digits to include.
+
+        include_percent (bool) : If True, tack on a '\\%' to the result.
 
     Returns:
         tex_percentage (str) : Formatted number.
@@ -220,6 +222,9 @@ def to_tex_percentage( value, precision=1 ):
         percent_format_str = '{:.' + str(precision - 1) + '%}'
         percent_str = percent_format_str.format( value )
         
+    if not include_percent:
+        return percent_str[:-1]
+
     tex_percent = '{}\\%'.format( percent_str[:-1] )
 
     return tex_percent
