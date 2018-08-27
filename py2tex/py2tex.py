@@ -196,35 +196,54 @@ def to_tex_scientific_notation( value, sig_figs=1 ):
 
 ########################################################################
 
-def to_tex_percentage( value, precision=1, include_percent=True ):
+def to_tex_percentage(
+        value,
+        precision = 1,
+        include_percent = True,
+        nearest_base = False,
+    ):
     '''Format a value as a percentage.
 
     Args:
-        value (float) : Number to format.
+        value (float) :
+            Number to format.
 
-        precision (int) : Number of digits to include.
+        precision (int) :
+            Number of digits to include.
 
-        include_percent (bool) : If True, tack on a '\\%' to the result.
+        include_percent (bool) :
+            If True, tack on a '\\%' to the result.
+
+        nearest_base (bool) :
+            If true, treat the precision as a base, and round the percentage
+            to the nearest value in that base.
 
     Returns:
         tex_percentage (str) : Formatted number.
     '''
 
-    # Python handles formatting percent a little weird, so this is a
-    # kind of hacky workaround
-    if precision == 0:
-        format_string = '{:.' + str(precision) + 'g}'
-        rounded_value = float( format_string.format( value ) )
-
-        percent_format_str = '{:.' + str(precision) + '%}'
-        percent_str = percent_format_str.format( rounded_value )
+    if nearest_base:
+        per_val = value * 100. 
+        percent_str = str( int( precision * round( per_val / precision ) ) )
+            
     else:
-        percent_format_str = '{:.' + str(precision - 1) + '%}'
-        percent_str = percent_format_str.format( value )
-        
-    if not include_percent:
-        return percent_str[:-1]
+        # Python handles formatting percent a little weird, so this is a
+        # kind of hacky workaround
+        if precision == 0:
+            format_string = '{:.' + str(precision) + 'g}'
+            rounded_value = float( format_string.format( value ) )
 
-    tex_percent = '{}\\%'.format( percent_str[:-1] )
+            percent_format_str = '{:.' + str(precision) + '%}'
+            percent_str = percent_format_str.format( rounded_value )
+        else:
+            percent_format_str = '{:.' + str(precision - 1) + '%}'
+            percent_str = percent_format_str.format( value )
+
+        percent_str = percent_str[:-1]
+            
+    if not include_percent:
+        return percent_str
+
+    tex_percent = '{}\\%'.format( percent_str )
 
     return tex_percent

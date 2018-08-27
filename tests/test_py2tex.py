@@ -222,7 +222,7 @@ class TestToTeXPercentage( unittest.TestCase ):
     
     ########################################################################
 
-    def test_to_tex_precentage( self ):
+    def test_to_tex_precentage2( self ):
 
         value = 0.573
 
@@ -231,4 +231,23 @@ class TestToTeXPercentage( unittest.TestCase ):
         actual = py2tex.to_tex_percentage( value, 1 )
 
         self.assertEqual( expected, actual )
+
+    ########################################################################
+
+    def test_round_to_nearest_base( self ):
     
+        value = 0.573
+        expected = r'55\%'
+        actual = py2tex.to_tex_percentage( value, 5, nearest_base=True )
+        self.assertEqual( expected, actual )
+    
+        value = 0.589
+        expected = r'60\%'
+        actual = py2tex.to_tex_percentage( value, 5, nearest_base=True )
+        self.assertEqual( expected, actual )
+
+        value = 0.315
+        expected = r'32\%'
+        actual = py2tex.to_tex_percentage( value, 2, nearest_base=True )
+        self.assertEqual( expected, actual )
+
