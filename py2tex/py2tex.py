@@ -188,6 +188,8 @@ def to_tex_scientific_notation( value, sig_figs=1 ):
 
         # Check for special cases
         if formatted_value[:7] == '1\\times':
+            if formatted_value[7:] == r'10^{1}':
+                return r'10'
             return formatted_value[7:]
         if formatted_value[-12:] == r'\times10^{0}':
             return formatted_value[:-12]
