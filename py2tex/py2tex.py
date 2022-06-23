@@ -178,11 +178,16 @@ def to_tex_scientific_notation( value, sig_figs=1 ):
     else:
         digits, exponent = ( '{:e}'.format( value ) ).split( 'e' )
 
-        formatted_exponent = '{' + str(int(exponent)) + '}'
-
         digits_value = float( digits )
         format_string = '{:.0' + str( sig_figs - 1 ) + 'f}'
         formatted_digits = format_string.format( digits_value )
+
+        # Check for an annoying special case
+        if formatted_digits == '10':
+            formatted_digits = '1'
+            exponent = str( int( exponent ) + 1 )
+
+        formatted_exponent = '{' + str(int(exponent)) + '}'
 
         formatted_value = '{}\\times10^{}'.format( formatted_digits, formatted_exponent )
 
